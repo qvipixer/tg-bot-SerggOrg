@@ -3,7 +3,7 @@ import logging
 from aiogram import Bot, Dispatcher, executor, types
 
 # Токен, выданный BotFather в телеграмме
-API_TOKEN = '5466053732:AAHZJK3wOusCldo3xTNAkevzEKAVGVqcqXM'
+API_TOKEN = "5466053732:AAHZJK3wOusCldo3xTNAkevzEKAVGVqcqXM"
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -12,10 +12,11 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
+
 @dp.message_handler()
 async def echo(message: types.Message):
     await message.answer(message.text)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     executor.start_polling(dp, skip_updates=True)
