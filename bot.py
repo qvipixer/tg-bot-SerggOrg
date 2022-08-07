@@ -3,7 +3,7 @@ import logging
 from aiogram import Bot, Dispatcher, executor, types
 
 # Токен, выданный BotFather в телеграмме
-API_TOKEN = 'BOT TOKEN HERE'
+API_TOKEN = '5466053732:AAHZJK3wOusCldo3xTNAkevzEKAVGVqcqXM'
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
