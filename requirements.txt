@@ -1,0 +1,2 @@
+pyTelegramBotAPI==3.6.6
+heroku==0.1.4
