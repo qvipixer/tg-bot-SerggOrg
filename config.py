@@ -16,4 +16,4 @@ WEBHOOK_URL = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
 # webserver settings
 WEBAPP_HOST = "0.0.0.0"
 WEBAPP_PORT = os.getenv("PORT", default=8000)
-DB_URL = os.getenv("DATABASE_URL")
+DB_URL = os.getenv("postgres://pixhteqrlsuyvr:99cb4332181f973c0525cd2cb1381582ea4501874316ab7582b8537b51ac77ea@ec2-54-228-125-183.eu-west-1.compute.amazonaws.com:5432/d3iebvulouuep7")
