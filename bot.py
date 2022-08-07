@@ -10,7 +10,7 @@ TOKEN = os.getenv('5466053732:AAHZJK3wOusCldo3xTNAkevzEKAVGVqcqXM')
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
 
-HEROKU_APP_NAME = os.getenv('HEROKU_APP_NAME')
+HEROKU_APP_NAME = os.getenv('desolate-caverns-75711')
 
 # webhook settings
 WEBHOOK_HOST = f'https://{HEROKU_APP_NAME}.herokuapp.com'
