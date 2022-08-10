@@ -18,3 +18,4 @@ yarl
 requests
 xmltodict
 BeautifulSoup
+bs4
