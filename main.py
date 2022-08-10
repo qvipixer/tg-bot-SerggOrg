@@ -114,19 +114,6 @@ async def without_puree(message: types.Message):
     await message.reply("Добро пожаловать в меню!", reply_markup=menu_kb_inl)
 
 
-@dp.callback_query_handler(text="random_value")
-async def send_random_value(call: types.CallbackQuery):
-    menu_kb_inl = types.InlineKeyboardMarkup(resize_keyboard=True)
-    button_inl_random = types.KeyboardButton(
-        text="Сыграем?", callback_data="random_value"
-    )
-    menu_kb_inl.add(button_inl_random)
-
-    await call.message.answer(
-        ("Число от 0 до 10 было :  " + str(randint(0, 10))), reply_markup=menu_kb_inl
-    )
-
-
 @dp.callback_query_handler(text="weather_value")
 async def send_weather_value(call: types.CallbackQuery):
     weather_list = mods.weather()
@@ -172,6 +159,19 @@ async def send_nasa_epic_photo(call: types.CallbackQuery):
 @dp.callback_query_handler(text="projects_value")
 async def send_projects_value(call: types.CallbackQuery):
     await call.message.reply("Тут скоро будут данные о проектах")
+
+
+@dp.callback_query_handler(text="random_value")
+async def send_random_value(call: types.CallbackQuery):
+    menu_kb_inl = types.InlineKeyboardMarkup(resize_keyboard=True)
+    button_inl_random = types.KeyboardButton(
+        text="Сыграем?", callback_data="random_value"
+    )
+    menu_kb_inl.add(button_inl_random)
+
+    await call.message.answer(
+        ("Число от 0 до 10 было :  " + str(randint(0, 10))), reply_markup=menu_kb_inl
+    )
 
 
 @dp.callback_query_handler(text="humor_value")
