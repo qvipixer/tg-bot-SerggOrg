@@ -101,14 +101,14 @@ async def without_puree(message: types.Message):
         text="NASA EPIC", callback_data="nasa_epic_photo"
     )
 
-    button_inl_site = types.KeyboardButton(
-        text="Наш сайт", url="http://craft-projects.com"
+    button_inl_random_cat = types.KeyboardButton(
+        text="Коцыки", callback_data="random_cat"
     )
 
     menu_kb_inl.add(button_inl_weather, button_inl_projects)
     menu_kb_inl.add(button_inl_humor, button_inl_random)
     menu_kb_inl.add(button_inl_nasa_apod_photo, button_inl_nasa_epic_photo)
-    menu_kb_inl.add(button_inl_site)
+    menu_kb_inl.add(button_inl_random_cat)
 
     await message.reply("Добро пожаловать в меню!", reply_markup=menu_kb_inl)
 
@@ -150,10 +150,15 @@ async def send_weather_value(call: types.CallbackQuery):
     # await call.message.reply('Тут скоро будут погодные данные')
 
 
+@dp.callback_query_handler(text="random_cat")
+async def send_nasa_apod_photo(call: types.CallbackQuery):
+    cat_img = mods.random_cat()
+    await call.message.answer_photo(cat_img)
+
+
 @dp.callback_query_handler(text="nasa_apod_photo")
 async def send_nasa_apod_photo(call: types.CallbackQuery):
     nasa_list = mods.nasa_apod()
-
     await call.message.answer_photo(nasa_list[0], caption=nasa_list[1])
 
 
