@@ -13,11 +13,21 @@ async def on_shutdown(dispatcher):
     # await database.disconnect()
     await bot.delete_webhook()
 
+
 @dp.message_handler()
 async def echo(message: types.Message):
     await save(message.from_user.id, message.text)
     messages = await read(message.from_user.id)
     await message.answer(messages)
+
+@dp.message_handler(commands=["start"])
+async def menu_start_command(message: types.Message):
+    menu_kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    button_hi = types.KeyboardButton(text="Вызвать меню")
+    menu_kb.add(button_hi)
+
+    await message.answer("Добро пожаловать!", reply_markup=menu_kb)
+
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)

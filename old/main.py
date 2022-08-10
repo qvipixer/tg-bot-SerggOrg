@@ -55,7 +55,7 @@ async def cmd_special_buttons(message: types.Message):
 
 @dp.message_handler(regexp="(^cat[s]?$|puss)")
 async def cats(message: types.Message):
-    with open("../photos/cat.jpg", "rb") as photo:
+    with open("photos/cat.jpg", "rb") as photo:
         """
         # Old fashioned way:
         await bot.send_photo(
@@ -70,7 +70,7 @@ async def cats(message: types.Message):
 
 @dp.message_handler(regexp="test")
 async def test(message: types.Message):
-    with open("../photos/cat.jpg", "rb") as photo:
+    with open("photos/cat.jpg", "rb") as photo:
         """
         # Old fashioned way:
         await bot.send_photo(
