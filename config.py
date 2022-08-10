@@ -1,19 +1,8 @@
-from aiogram.dispatcher import Dispatcher
-from aiogram import Bot
-import os
-
-TOKEN = os.getenv('BOT_TOKEN')
-bot = Bot(token=TOKEN)
-dp = Dispatcher(bot)
-
-HEROKU_APP_NAME = os.getenv('HEROKU_APP_NAME')
-
-# webhook settings
-WEBHOOK_HOST = f'https://{HEROKU_APP_NAME}.herokuapp.com'
-WEBHOOK_PATH = f'/webhook/{TOKEN}'
-WEBHOOK_URL = f'{WEBHOOK_HOST}{WEBHOOK_PATH}'
-
-# webserver settings
-WEBAPP_HOST = '0.0.0.0'
-WEBAPP_PORT = os.getenv('PORT', default=8000)
-DB_URL = os.getenv('DATABASE_URL')
+settings = {
+    # 'BOT_NAME':'BMZ_ESP2_Simatic_bot',
+    # 'BOT_TOKEN':'1771366527:AAFtGNnDSi9gfPHrM-y2W5htQ3VHF5uM_7s'
+    # 'BOT_NAME': 'TechSpaceZhlBot',
+    # 'BOT_TOKEN': '1725118518:AAFFZySMQwGtCeG4Q7HNVAfikJ1i3LteoBg'
+    "BOT_NAME": " @SerggOrg_bot",
+    "BOT_TOKEN": "5466053732:AAHZJK3wOusCldo3xTNAkevzEKAVGVqcqXM",
+}
