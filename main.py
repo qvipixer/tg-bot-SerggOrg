@@ -20,6 +20,7 @@ async def echo(message: types.Message):
     messages = await read(message.from_user.id)
     await message.answer(messages)
 
+
 @dp.message_handler(commands=["start"])
 async def menu_start_command(message: types.Message):
     menu_kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
