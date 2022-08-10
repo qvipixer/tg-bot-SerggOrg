@@ -41,7 +41,7 @@ async def cats(message: types.Message):
             reply_to_message_id=message.message_id,
         )
         """
-        await message.reply_photo(photo, caption="Cats are here")
+        await message.reply_photo(photo, caption="Коцык тута")
 
 
 @dp.message_handler(regexp="test")
@@ -62,7 +62,7 @@ async def test(message: types.Message):
         )
         markup.add(switch_button)
 
-        await message.answer_photo(photo, caption="Cats are here")
+        await message.answer_photo(photo, caption="Коцык тута")
         await message.answer("Выбрать чат", reply_markup=markup)
 
 
