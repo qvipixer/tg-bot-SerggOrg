@@ -15,3 +15,4 @@ multidict
 pytz
 SQLAlchemy
 yarl
+requests
