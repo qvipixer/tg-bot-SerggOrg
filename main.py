@@ -1,11 +1,12 @@
 import logging
-from aiogram import Bot, Dispatcher, executor, types
-from aiogram.utils.executor import start_webhook
-from aiogram.utils.callback_data import CallbackData
-import aiogram.utils.markdown as fmt
-from config import bot, dp, WEBHOOK_URL, WEBHOOK_PATH, WEBAPP_HOST, WEBAPP_PORT
-import mods
 from random import randint
+
+import aiogram.utils.markdown as fmt
+from aiogram import types
+from aiogram.utils.executor import start_webhook
+
+import mods
+from config import bot, dp, WEBHOOK_URL, WEBHOOK_PATH, WEBAPP_HOST, WEBAPP_PORT
 
 
 async def on_startup(dispatcher):
