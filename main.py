@@ -28,6 +28,7 @@ async def echo(message: types.Message):
 
 """ CAT """
 
+
 @dp.message_handler(regexp="(^cat[s]?$|puss)")
 async def cats(message: types.Message):
     with open("photos/cat.jpg", "rb") as photo:
@@ -64,9 +65,11 @@ async def test(message: types.Message):
         await message.answer_photo(photo, caption="Cats are here")
         await message.answer("Выбрать чат", reply_markup=markup)
 
+
 """ CAT """
 
 """ MENU"""
+
 
 @dp.message_handler(commands=["start"])
 async def menu_start_command(message: types.Message):
