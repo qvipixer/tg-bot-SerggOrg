@@ -139,9 +139,13 @@ async def send_weather_value(call: types.CallbackQuery):
 
 
 @dp.callback_query_handler(text="random_cat")
-async def send_nasa_apod_photo(call: types.CallbackQuery):
-    cat_img = mods.random_cat()
-    await call.message.answer_photo(cat_img)
+async def send_random_cat(call: types.CallbackQuery):
+    menu_kb_inl = types.InlineKeyboardMarkup(resize_keyboard=True)
+    button_inl_random_cat = types.KeyboardButton(
+        text="Ещё кота?", callback_data="random_cat"
+    )
+    menu_kb_inl.add(button_inl_random_cat)
+    await call.message.answer_photo(mods.random_cat(), reply_markup=menu_kb_inl)
 
 
 @dp.callback_query_handler(text="nasa_apod_photo")
@@ -154,11 +158,6 @@ async def send_nasa_apod_photo(call: types.CallbackQuery):
 async def send_nasa_epic_photo(call: types.CallbackQuery):
     nasa_list = mods.nasa_epic()
     await call.message.answer_photo(nasa_list[0], caption=nasa_list[1])
-
-
-@dp.callback_query_handler(text="projects_value")
-async def send_projects_value(call: types.CallbackQuery):
-    await call.message.reply("Тут скоро будут данные о проектах")
 
 
 @dp.callback_query_handler(text="random_value")
@@ -177,12 +176,17 @@ async def send_random_value(call: types.CallbackQuery):
 @dp.callback_query_handler(text="humor_value")
 async def send_humor_value(call: types.CallbackQuery):
     menu_kb_inl = types.InlineKeyboardMarkup(resize_keyboard=True)
-    button_inl_random = types.KeyboardButton(text="Ещё", callback_data="humor_value")
-    menu_kb_inl.add(button_inl_random)
+    button_inl_humor = types.KeyboardButton(text="Ещё", callback_data="humor_value")
+    menu_kb_inl.add(button_inl_humor)
 
     await call.message.answer(
         mods.humor(), reply_markup=menu_kb_inl
     )  # +'Тут скоро будут шутки-прибаутки')
+
+
+@dp.callback_query_handler(text="projects_value")
+async def send_projects_value(call: types.CallbackQuery):
+    await call.message.reply("Тут скоро будут данные о проектах")
 
 
 """MENU"""
