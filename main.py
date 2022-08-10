@@ -4,18 +4,18 @@ from random import randint
 import aiogram.utils.markdown as fmt
 from aiogram import types
 from aiogram.utils.executor import start_webhook
-
+from db import database
 import mods
 from config import bot, dp, WEBHOOK_URL, WEBHOOK_PATH, WEBAPP_HOST, WEBAPP_PORT
 
 
 async def on_startup(dispatcher):
-    # await database.connect()
+    await database.connect()
     await bot.set_webhook(WEBHOOK_URL, drop_pending_updates=True)
 
 
 async def on_shutdown(dispatcher):
-    # await database.disconnect()
+    await database.disconnect()
     await bot.delete_webhook()
 
 
