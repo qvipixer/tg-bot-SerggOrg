@@ -26,8 +26,47 @@ async def echo(message: types.Message):
     await message.answer(messages)
 """
 
-""" MENU"""
+""" CAT """
 
+@dp.message_handler(regexp="(^cat[s]?$|puss)")
+async def cats(message: types.Message):
+    with open("photos/cat.jpg", "rb") as photo:
+        """
+        # Old fashioned way:
+        await bot.send_photo(
+            message.chat.id,
+            photo,
+            caption='Cats are here 😺',
+            reply_to_message_id=message.message_id,
+        )
+        """
+        await message.reply_photo(photo, caption="Cats are here")
+
+
+@dp.message_handler(regexp="test")
+async def test(message: types.Message):
+    with open("photos/cat.jpg", "rb") as photo:
+        """
+        # Old fashioned way:
+        await bot.send_photo(
+            message.chat.id,
+            photo,
+            caption='Cats are here 😺',
+            reply_to_message_id=message.message_id,
+        )
+        """
+        markup = types.InlineKeyboardMarkup()
+        switch_button = types.InlineKeyboardButton(
+            text="Try", switch_inline_query="Telegram"
+        )
+        markup.add(switch_button)
+
+        await message.answer_photo(photo, caption="Cats are here")
+        await message.answer("Выбрать чат", reply_markup=markup)
+
+""" CAT """
+
+""" MENU"""
 
 @dp.message_handler(commands=["start"])
 async def menu_start_command(message: types.Message):
