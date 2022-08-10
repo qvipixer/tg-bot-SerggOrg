@@ -16,3 +16,4 @@ pytz
 SQLAlchemy
 yarl
 requests
+xmltodict
