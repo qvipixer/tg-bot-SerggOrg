@@ -17,3 +17,4 @@ SQLAlchemy
 yarl
 requests
 xmltodict
+BeautifulSoup
