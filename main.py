@@ -4,9 +4,10 @@ from random import randint
 import aiogram.utils.markdown as fmt
 from aiogram import types
 from aiogram.utils.executor import start_webhook
-from db import database
+
 import mods
 from config import bot, dp, WEBHOOK_URL, WEBHOOK_PATH, WEBAPP_HOST, WEBAPP_PORT
+from db import database
 
 
 async def on_startup(dispatcher):

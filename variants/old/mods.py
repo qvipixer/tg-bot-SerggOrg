@@ -1,7 +1,8 @@
 import json
+import urllib.request
+
 import requests
 import xmltodict
-import urllib.request
 from bs4 import BeautifulSoup
 
 
@@ -121,7 +122,6 @@ def weather():
         text_info_val,
     ]
     return weather_val
-
 
 # print(weather())
 # print(humor())

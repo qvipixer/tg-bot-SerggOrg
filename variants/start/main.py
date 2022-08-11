@@ -1,6 +1,8 @@
 import logging
+
 from aiogram import types
 from aiogram.utils.executor import start_webhook
+
 from config import bot, dp, WEBHOOK_URL, WEBHOOK_PATH, WEBAPP_HOST, WEBAPP_PORT
 from db import database
 

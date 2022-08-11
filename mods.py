@@ -1,9 +1,10 @@
 import json
+import urllib.request
+from random import randint
+
 import requests
 import xmltodict
-import urllib.request
 from bs4 import BeautifulSoup
-from random import randint
 
 
 def humor():

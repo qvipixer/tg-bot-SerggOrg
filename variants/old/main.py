@@ -1,10 +1,12 @@
 import logging
-import config
-import mods
 from random import randint
+
+import aiogram.utils.markdown as fmt
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.utils.callback_data import CallbackData
-import aiogram.utils.markdown as fmt
+
+import config
+import mods
 
 API_TOKEN = config.settings["BOT_TOKEN"]
 
