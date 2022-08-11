@@ -141,7 +141,7 @@ async def send_weather_value(call: types.CallbackQuery):
 
 @dp.callback_query_handler(text="random_cat")
 async def send_random_cat(call: types.CallbackQuery):
-    menu_kb_inl = types.InlineKeyboardMarkup(resize_keyboard=True)
+    menu_kb_inl = types.InlineKeyboardMarkup(resize_keyboard=False)
     button_inl_random_cat = types.KeyboardButton(
         text="Ещё кота?", callback_data="random_cat"
     )
