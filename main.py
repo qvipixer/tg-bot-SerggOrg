@@ -88,6 +88,8 @@ async def echo(message: types.Message):
         str(message.text),
     )
     await cursor.execute(postgres_insert_query, record_to_insert)
+    await conn.commit()
+    await conn.close()
 
     # with conn:
     #    with conn.cursor() as curs:
