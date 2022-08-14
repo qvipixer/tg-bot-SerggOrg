@@ -95,7 +95,7 @@ async def echo(message: types.Message):
 
     with conn:
         with conn.cursor() as curs:
-            await curs.execute(postgres_insert_query, record_to_insert)
+            curs.execute(postgres_insert_query, record_to_insert)
 
     await conn.close()
     await message.answer(message.text + " Твой ИД " + str(message.from_user.id))
