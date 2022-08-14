@@ -53,9 +53,8 @@ async def save(user_id, text):
     postgres_insert_query = (
         """ INSERT INTO messages(id, telegram_id, text) VALUES (%s,%s,%s)"""
     )
-    record_to_insert = (id, user_id, text)
-    cursor.execute(postgres_insert_query, record_to_insert)
-    conn.commit()
+    record_to_insert = ('11', user_id, text)
+    await cursor.execute(postgres_insert_query, record_to_insert)
 
 
 async def read(user_id):
