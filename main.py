@@ -65,9 +65,11 @@ async def menu_start_command(message: types.Message):
 
 
 async def db_drop():
-    await cursor.execute(
+    cursor.execute(
         "DROP TABLE IF EXISTS EMPLOYEE"
     )
+    cursor.close()
+    conn.commit()
 
 
 async def db_add():
@@ -78,7 +80,9 @@ async def db_add():
        SEX CHAR(1),
        INCOME FLOAT
     )'''
-    await cursor.execute(sql)
+    cursor.execute(sql)
+    cursor.close()
+    conn.commit()
 
 
 @dp.message_handler(commands=["db_drop"])
