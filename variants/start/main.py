@@ -4,19 +4,22 @@ from aiogram import types
 from aiogram.utils.executor import start_webhook
 
 from config import bot, dp, WEBHOOK_URL, WEBHOOK_PATH, WEBAPP_HOST, WEBAPP_PORT
-from db import database
+
+
+# from db import database
 
 
 async def on_startup(dispatcher):
-    await database.connect()
+    # await database.connect()
     await bot.set_webhook(WEBHOOK_URL, drop_pending_updates=True)
 
 
 async def on_shutdown(dispatcher):
-    await database.disconnect()
+    # await database.disconnect()
     await bot.delete_webhook()
 
 
+"""
 async def save(user_id, text):
     await database.execute(
         f"INSERT INTO messages(telegram_id, text) " f"VALUES (:telegram_id, :text)",
@@ -30,6 +33,7 @@ async def read(user_id):
         values={"telegram_id": user_id},
     )
     return [next(result.values()) for result in results]
+"""
 
 
 @dp.message_handler()
