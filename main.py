@@ -50,10 +50,11 @@ async def db_add():
 
 
 async def save(user_id, text):
-    await cursor.execute(
+    cursor.execute(
         "INSERT INTO messages(id, telegram_id, text) VALUES (:id, :telegram_id, :text)",
         values={"id": 1, "telegram_id": user_id, "text": text},
     )
+    conn.commit()
 
 
 async def read(user_id):
