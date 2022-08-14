@@ -84,9 +84,9 @@ async def echo(message: types.Message):
         """ INSERT INTO messages (id, telegram_id, text) VALUES (%s,%s,%s)"""
     )
     record_to_insert = (
-        '',
-        1231231,
-        "ghhjghjgjh",
+        int(""),
+        int(1231231),
+        str("ghhjghjgjh"),
     )  # str(message.from_user.id), message.text)
     # await cursor.execute(postgres_insert_query, record_to_insert)
     # await conn.commit()
