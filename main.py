@@ -79,16 +79,7 @@ async def echo(message: types.Message):
 
 @dp.message_handler()
 async def echo(message: types.Message):
-    # old style:
-    # await bot.send_message(message.chat.id, message.text)
-    # await save(message.from_user.id, message.text)
-    await save(message.text, message.from_user.id)
-
-    # with conn:
-    #    with conn.cursor() as curs:
-    #        curs.execute(postgres_insert_query, record_to_insert)
-
-    # await conn.close()
+    await save(message.from_user.id, message.text)
     await message.answer(message.text + " Твой ИД " + str(message.from_user.id))
 
 
