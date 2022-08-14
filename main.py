@@ -84,7 +84,7 @@ async def echo(message: types.Message):
         """ INSERT INTO messages (id, telegram_id, text) VALUES (%s,%s,%s)"""
     )
     record_to_insert = (
-        int(-1),
+        DEFAULT,
         int(message.from_user.id),
         str(message.text),
     )
