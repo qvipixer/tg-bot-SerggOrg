@@ -73,17 +73,13 @@ async def menu_start_command(message: types.Message):
     await message.answer("Добро пожаловать!", reply_markup=menu_kb)
 
 
-@dp.message_handler(commands=["db_drop"])
-async def menu_start_command(message: types.Message):
-    await cursor.execute("DROP TABLE IF EXISTS EMPLOYEE")
-    print("Table cleared successfully........")
-    await conn.commit()
-    await conn.close()
+async def db_drop():
+    await cursor.execute(
+        "DROP TABLE IF EXISTS EMPLOYEE"
+    )
 
 
-@dp.message_handler(commands=["db_add"])
-async def menu_start_command(message: types.Message):
-    # Creating table as per requirement
+async def db_add():
     sql = '''CREATE TABLE EMPLOYEE(
        FIRST_NAME CHAR(20) NOT NULL,
        LAST_NAME CHAR(20),
@@ -92,9 +88,16 @@ async def menu_start_command(message: types.Message):
        INCOME FLOAT
     )'''
     await cursor.execute(sql)
-    print("Table created successfully........")
-    await conn.commit()
-    await conn.close()
+
+
+@dp.message_handler(commands=["db_drop"])
+async def menu_start_command(message: types.Message):
+    await db_drop()
+
+
+@dp.message_handler(commands=["db_add"])
+async def menu_start_command(message: types.Message):
+    await db_add()
 
 
 @dp.message_handler(lambda message: message.text == "Вызвать меню")
