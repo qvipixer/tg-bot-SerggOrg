@@ -33,7 +33,7 @@ async def read(user_id):
         values={"telegram_id": user_id},
     )
     return [next(result.values()) for result in results]
-"""
+
 
 
 @dp.message_handler()
@@ -41,7 +41,7 @@ async def echo(message: types.Message):
     await save(message.from_user.id, message.text)
     messages = await read(message.from_user.id)
     await message.answer(messages)
-
+"""
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
