@@ -7,16 +7,16 @@ from aiogram.utils.executor import start_webhook
 
 import mods
 from config import bot, dp, WEBHOOK_URL, WEBHOOK_PATH, WEBAPP_HOST, WEBAPP_PORT
-from db import database
+# from db import database
 
 
 async def on_startup(dispatcher):
-    await database.connect()
+    # await database.connect()
     await bot.set_webhook(WEBHOOK_URL, drop_pending_updates=True)
 
 
 async def on_shutdown(dispatcher):
-    await database.disconnect()
+    # await database.disconnect()
     await bot.delete_webhook()
 
 
