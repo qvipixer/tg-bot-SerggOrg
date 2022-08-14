@@ -7,7 +7,7 @@ from aiogram.utils.executor import start_webhook
 
 import mods
 from config import bot, dp, WEBHOOK_URL, WEBHOOK_PATH, WEBAPP_HOST, WEBAPP_PORT
-# from db import database
+from db import conn, cursor
 
 
 async def on_startup(dispatcher):
@@ -16,7 +16,7 @@ async def on_startup(dispatcher):
 
 
 async def on_shutdown(dispatcher):
-    # await database.disconnect()
+    await conn.close()
     await bot.delete_webhook()
 
 
@@ -73,13 +73,28 @@ async def menu_start_command(message: types.Message):
     await message.answer("Добро пожаловать!", reply_markup=menu_kb)
 
 
-@dp.message_handler(commands=["db"])
+@dp.message_handler(commands=["db_drop"])
 async def menu_start_command(message: types.Message):
-    menu_kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button_db = types.KeyboardButton(text="db")
-    menu_kb.add(button_db)
+    await cursor.execute("DROP TABLE IF EXISTS EMPLOYEE")
+    print("Table cleared successfully........")
+    await conn.commit()
+    await conn.close()
 
-    await message.answer("db", reply_markup=menu_kb)
+
+@dp.message_handler(commands=["db_add"])
+async def menu_start_command(message: types.Message):
+    # Creating table as per requirement
+    sql = '''CREATE TABLE EMPLOYEE(
+       FIRST_NAME CHAR(20) NOT NULL,
+       LAST_NAME CHAR(20),
+       AGE INT,
+       SEX CHAR(1),
+       INCOME FLOAT
+    )'''
+    await cursor.execute(sql)
+    print("Table created successfully........")
+    await conn.commit()
+    await conn.close()
 
 
 @dp.message_handler(lambda message: message.text == "Вызвать меню")
