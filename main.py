@@ -12,7 +12,6 @@ from db import database
 
 async def on_startup(dispatcher):
     await database.connect()
-    print(database)
     await bot.set_webhook(WEBHOOK_URL, drop_pending_updates=True)
 
 
