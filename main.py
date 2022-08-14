@@ -81,7 +81,7 @@ async def echo(message: types.Message):
 @dp.message_handler()
 async def echo(message: types.Message):
     await save(message.from_user.id, message.text)
-    await message.answer(message.text + " Твой ИД " + str(message.from_user.id))
+    # await message.answer(message.text + " Твой ИД " + str(message.from_user.id))
 
 
 @dp.message_handler(regexp="(^cat[s]?$|puss)")
