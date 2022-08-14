@@ -22,9 +22,10 @@ async def on_shutdown(dispatcher):
 
 @dp.message_handler()
 async def echo(message: types.Message):
-    await save(message.from_user.id, message.text)
+    # await save(message.from_user.id, message.text)
     messages = await read(message.from_user.id)
-    await message.answer(messages+" "+message.from_user.id)
+    await message.answer(message.from_user.id)
+
 
 """ CAT """
 
