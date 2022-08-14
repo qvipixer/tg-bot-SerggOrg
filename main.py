@@ -65,15 +65,17 @@ async def menu_start_command(message: types.Message):
 
 
 async def db_drop():
-    cursor.execute(
-        "DROP TABLE IF EXISTS EMPLOYEE"
-    )
+    sql = '''
+    DROP TABLE IF EXISTS EMPLOYEE
+    '''
+    cursor.execute(sql)
     cursor.close()
     conn.commit()
 
 
 async def db_add():
-    sql = '''CREATE TABLE EMPLOYEE(
+    sql = '''
+    CREATE TABLE EMPLOYEE(
        FIRST_NAME CHAR(20) NOT NULL,
        LAST_NAME CHAR(20),
        AGE INT,
