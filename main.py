@@ -57,7 +57,8 @@ async def save(user_id, text):
         int(user_id),
         str(text),
     )
-    await cursor.execute(postgres_insert_query, record_to_insert)
+    cursor.execute(postgres_insert_query, record_to_insert)
+    conn.commit()
 
 
 async def read(user_id):
