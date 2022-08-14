@@ -16,8 +16,37 @@ async def on_startup(dispatcher):
 
 
 async def on_shutdown(dispatcher):
-    await conn.close()
+    # await conn.close()
     await bot.delete_webhook()
+
+
+async def db_drop():
+    sql = """
+    DROP TABLE EMPLOYEE
+    """
+    cursor.execute(sql)
+    conn.commit()
+
+
+async def db_add():
+    sql1 = """
+    CREATE TABLE messages (
+        id SERIAL PRIMARY KEY,
+        telegram_id INTEGER NOT NULL,
+        text text NOT NULL
+    )
+    """
+
+    sql = """
+    CREATE TABLE EMPLOYEE(
+        FIRST_NAME CHAR(20) NOT NULL,
+        LAST_NAME CHAR(20),
+        AGE INT,
+        SEX CHAR(1),
+        INCOME FLOAT
+    )"""
+    cursor.execute(sql1)
+    conn.commit()
 
 
 async def save(user_id, text):
@@ -68,35 +97,6 @@ async def menu_start_command(message: types.Message):
     menu_kb.add(button_hi)
 
     await message.answer("Добро пожаловать!", reply_markup=menu_kb)
-
-
-async def db_drop():
-    sql = """
-    DROP TABLE EMPLOYEE
-    """
-    cursor.execute(sql)
-    conn.commit()
-
-
-async def db_add():
-    sql1 = """
-    CREATE TABLE messages (
-    id SERIAL PRIMARY KEY,
-    telegram_id INTEGER NOT NULL,
-    text text NOT NULL
-    )
-    """
-
-    sql = """
-    CREATE TABLE EMPLOYEE(
-       FIRST_NAME CHAR(20) NOT NULL,
-       LAST_NAME CHAR(20),
-       AGE INT,
-       SEX CHAR(1),
-       INCOME FLOAT
-    )"""
-    cursor.execute(sql1)
-    conn.commit()
 
 
 @dp.message_handler(commands=["db_drop"])
