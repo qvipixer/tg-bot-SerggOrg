@@ -51,9 +51,12 @@ async def db_add():
 
 async def save(user_id, text):
     postgres_insert_query = (
-        """ INSERT INTO messages(id, telegram_id, text) VALUES (%s,%s,%s)"""
+        """ INSERT INTO messages (id, telegram_id, text) VALUES (DEFAULT,%s,%s)"""
     )
-    record_to_insert = ("11", user_id, text)
+    record_to_insert = (
+        int(user_id),
+        str(text),
+    )
     await cursor.execute(postgres_insert_query, record_to_insert)
 
 
@@ -79,17 +82,7 @@ async def echo(message: types.Message):
     # old style:
     # await bot.send_message(message.chat.id, message.text)
     # await save(message.from_user.id, message.text)
-
-    postgres_insert_query = (
-        """ INSERT INTO messages (id, telegram_id, text) VALUES (DEFAULT,%s,%s)"""
-    )
-    record_to_insert = (
-        int(message.from_user.id),
-        str(message.text),
-    )
-    await cursor.execute(postgres_insert_query, record_to_insert)
-    await conn.commit()
-    await conn.close()
+    await save(message.text, message.from_user.id)
 
     # with conn:
     #    with conn.cursor() as curs:
