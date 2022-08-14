@@ -58,17 +58,10 @@ async def save(user_id, text):
 
 async def read(user_id):
     results = await cursor.fetch_all(
-        "SELECT text " "FROM messages WHERE telegram_id = :telegram_id ",
+        "SELECT text FROM messages WHERE telegram_id = :telegram_id ",
         values={"telegram_id": user_id},
     )
     return [next(result.values()) for result in results]
-
-
-@dp.message_handler()
-async def echo(message: types.Message):
-    await save(message.from_user.id, message.text)
-    messages = await read(message.from_user.id)
-    await message.answer(messages)
 
 
 """ CAT """
