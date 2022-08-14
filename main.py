@@ -53,7 +53,7 @@ async def save(user_id, text):
     postgres_insert_query = (
         """ INSERT INTO messages(id, telegram_id, text) VALUES (%s,%s,%s)"""
     )
-    record_to_insert = ('11', user_id, text)
+    record_to_insert = ("11", user_id, text)
     await cursor.execute(postgres_insert_query, record_to_insert)
 
 
@@ -78,7 +78,13 @@ async def echo(message: types.Message):
 async def echo(message: types.Message):
     # old style:
     # await bot.send_message(message.chat.id, message.text)
-    await save(message.from_user.id, message.text)
+    # await save(message.from_user.id, message.text)
+
+    postgres_insert_query = (
+        """ INSERT INTO messages(id, telegram_id, text) VALUES (%s,%s,%s)"""
+    )
+    record_to_insert = (1, message.from_user.id, message.text)
+    await cursor.execute(postgres_insert_query, record_to_insert)
     await message.answer(message.text + " Твой ИД " + str(message.from_user.id))
 
 
