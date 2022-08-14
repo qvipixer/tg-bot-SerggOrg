@@ -34,15 +34,6 @@ async def echo(message: types.Message):
 @dp.message_handler(regexp="(^cat[s]?$|puss)")
 async def cats(message: types.Message):
     with open("photos/cat.jpg", "rb") as photo:
-        """
-        # Old fashioned way:
-        await bot.send_photo(
-            message.chat.id,
-            photo,
-            caption='Cats are here 😺',
-            reply_to_message_id=message.message_id,
-        )
-        """
         await message.reply_photo(photo, caption="Коцык тута")
 
 
@@ -80,6 +71,15 @@ async def menu_start_command(message: types.Message):
     menu_kb.add(button_hi)
 
     await message.answer("Добро пожаловать!", reply_markup=menu_kb)
+
+
+@dp.message_handler(commands=["db"])
+async def menu_start_command(message: types.Message):
+    menu_kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    button_db = types.KeyboardButton(text="db")
+    menu_kb.add(button_db)
+
+    await message.answer("db", reply_markup=menu_kb)
 
 
 @dp.message_handler(lambda message: message.text == "Вызвать меню")
@@ -141,7 +141,7 @@ async def send_weather_value(call: types.CallbackQuery):
 
 @dp.callback_query_handler(text="random_cat")
 async def send_random_cat(call: types.CallbackQuery):
-    menu_kb_inl = types.InlineKeyboardMarkup(resize_keyboard=False)
+    menu_kb_inl = types.InlineKeyboardMarkup(resize_keyboard=True)
     button_inl_random_cat = types.KeyboardButton(
         text="Ещё кота?", callback_data="random_cat"
     )
