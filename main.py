@@ -85,7 +85,7 @@ async def echo(message: types.Message):
     )
     record_to_insert = (
         1231231,
-        "ghhjghjgjh"
+        "ghhjghjgjh",
     )  # str(message.from_user.id), message.text)
     # await cursor.execute(postgres_insert_query, record_to_insert)
     # await conn.commit()
