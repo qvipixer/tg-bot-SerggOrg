@@ -40,15 +40,6 @@ async def cats(message: types.Message):
 @dp.message_handler(regexp="test")
 async def test(message: types.Message):
     with open("photos/cat.jpg", "rb") as photo:
-        """
-        # Old fashioned way:
-        await bot.send_photo(
-            message.chat.id,
-            photo,
-            caption='Cats are here 😺',
-            reply_to_message_id=message.message_id,
-        )
-        """
         markup = types.InlineKeyboardMarkup()
         switch_button = types.InlineKeyboardButton(
             text="Try", switch_inline_query="Telegram"
@@ -93,11 +84,13 @@ async def db_add():
 @dp.message_handler(commands=["db_drop"])
 async def menu_start_command(message: types.Message):
     await db_drop()
+    await message.reply('db_drop')
 
 
 @dp.message_handler(commands=["db_add"])
 async def menu_start_command(message: types.Message):
     await db_add()
+    await message.reply('db_add')
 
 
 @dp.message_handler(lambda message: message.text == "Вызвать меню")
@@ -200,7 +193,7 @@ async def send_humor_value(call: types.CallbackQuery):
 
     await call.message.answer(
         mods.humor(), reply_markup=menu_kb_inl
-    )  # +'Тут скоро будут шутки-прибаутки')
+    )
 
 
 @dp.callback_query_handler(text="projects_value")
