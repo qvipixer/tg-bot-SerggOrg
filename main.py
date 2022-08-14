@@ -16,7 +16,7 @@ async def on_startup(dispatcher):
 
 
 async def on_shutdown(dispatcher):
-    # await conn.close()
+    await conn.close()
     await bot.delete_webhook()
 
 
@@ -69,7 +69,6 @@ async def db_drop():
     DROP TABLE EMPLOYEE
     '''
     cursor.execute(sql)
-    cursor.close()
     conn.commit()
 
 
@@ -83,7 +82,6 @@ async def db_add():
        INCOME FLOAT
     )'''
     cursor.execute(sql)
-    cursor.close()
     conn.commit()
 
 
