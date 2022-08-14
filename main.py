@@ -64,6 +64,29 @@ async def read(user_id):
     return [next(result.values()) for result in results]
 
 
+@dp.message_handler(regexp="(^cat[s]?$|puss)")
+async def cats(message: types.Message):
+    with open("photos/cat.jpg", "rb") as photo:
+        await message.reply_photo(photo, caption="Коцык тута")
+
+
+"""
+@dp.message_handler()
+async def echo(message: types.Message):
+    await save(message.from_user.id, message.text)
+    messages = await read(message.from_user.id)
+    await message.answer(messages)
+"""
+
+
+@dp.message_handler()
+async def echo(message: types.Message):
+    # old style:
+    # await bot.send_message(message.chat.id, message.text)
+
+    await message.answer(message.text, message.from_user.id)
+
+
 """ CAT """
 
 
