@@ -20,13 +20,11 @@ async def on_shutdown(dispatcher):
     await bot.delete_webhook()
 
 
-"""
 @dp.message_handler()
 async def echo(message: types.Message):
     await save(message.from_user.id, message.text)
     messages = await read(message.from_user.id)
-    await message.answer(messages)
-"""
+    await message.answer(messages+" "+message.from_user.id)
 
 """ CAT """
 
