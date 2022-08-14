@@ -51,17 +51,18 @@ async def db_add():
 
 async def save(user_id, text):
     await cursor.execute(
-        "INSERT INTO messages(telegram_id, text) " "VALUES (:telegram_id, :text)",
+        "INSERT INTO messages(telegram_id, text) VALUES (:telegram_id, :text)",
         values={"telegram_id": user_id, "text": text},
     )
 
 
+"""
 @dp.message_handler()
 async def echo(message: types.Message):
     await save(message.from_user.id, message.text)
     # messages = await read(message.from_user.id)
     # await message.answer(messages)
-
+"""
 
 """ CAT """
 
