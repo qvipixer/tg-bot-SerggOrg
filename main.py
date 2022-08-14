@@ -20,13 +20,19 @@ async def on_shutdown(dispatcher):
     await bot.delete_webhook()
 
 
-"""
+async def save(user_id, text):
+    await cursor.execute(
+        "INSERT INTO messages(telegram_id, text) " "VALUES (:telegram_id, :text)",
+        values={"telegram_id": user_id, "text": text},
+    )
+
+
 @dp.message_handler()
 async def echo(message: types.Message):
     await save(message.from_user.id, message.text)
-    messages = await read(message.from_user.id)
-    await message.answer(messages)
-"""
+    # messages = await read(message.from_user.id)
+    # await message.answer(messages)
+
 
 """ CAT """
 
@@ -65,36 +71,44 @@ async def menu_start_command(message: types.Message):
 
 
 async def db_drop():
-    sql = '''
+    sql = """
     DROP TABLE EMPLOYEE
-    '''
+    """
     cursor.execute(sql)
     conn.commit()
 
 
 async def db_add():
-    sql = '''
+    sql1 = """
+    CREATE TABLE messages (
+    id SERIAL PRIMARY KEY,
+    telegram_id INTEGER NOT NULL,
+    text text NOT NULL
+    )
+    """
+
+    sql = """
     CREATE TABLE EMPLOYEE(
        FIRST_NAME CHAR(20) NOT NULL,
        LAST_NAME CHAR(20),
        AGE INT,
        SEX CHAR(1),
        INCOME FLOAT
-    )'''
-    cursor.execute(sql)
+    )"""
+    cursor.execute(sql1)
     conn.commit()
 
 
 @dp.message_handler(commands=["db_drop"])
 async def menu_start_command(message: types.Message):
     await db_drop()
-    await message.reply('db_drop')
+    await message.reply("db_drop")
 
 
 @dp.message_handler(commands=["db_add"])
 async def menu_start_command(message: types.Message):
     await db_add()
-    await message.reply('db_add')
+    await message.reply("db_add")
 
 
 @dp.message_handler(lambda message: message.text == "Вызвать меню")
@@ -195,9 +209,7 @@ async def send_humor_value(call: types.CallbackQuery):
     button_inl_humor = types.KeyboardButton(text="Ещё", callback_data="humor_value")
     menu_kb_inl.add(button_inl_humor)
 
-    await call.message.answer(
-        mods.humor(), reply_markup=menu_kb_inl
-    )
+    await call.message.answer(mods.humor(), reply_markup=menu_kb_inl)
 
 
 @dp.callback_query_handler(text="projects_value")
