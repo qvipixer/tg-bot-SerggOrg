@@ -86,6 +86,8 @@ async def echo(message: types.Message):
     record_to_insert = (message.from_user.id, message.text)
     await cursor.execute(postgres_insert_query, record_to_insert)
     await conn.commit()
+    await cursor.close()
+    await conn.close()
     await message.answer(message.text + " Твой ИД " + str(message.from_user.id))
 
 
