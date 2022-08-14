@@ -66,7 +66,7 @@ async def menu_start_command(message: types.Message):
 
 async def db_drop():
     sql = '''
-    DROP TABLE IF EXISTS EMPLOYEE
+    DROP TABLE EMPLOYEE
     '''
     cursor.execute(sql)
     cursor.close()
