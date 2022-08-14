@@ -18,3 +18,4 @@ yarl
 requests
 xmltodict
 bs4
+psycopg2
