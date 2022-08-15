@@ -7,7 +7,7 @@ from aiogram.utils.executor import start_webhook
 
 import mods
 from config import bot, dp, WEBHOOK_URL, WEBHOOK_PATH, WEBAPP_HOST, WEBAPP_PORT
-from db import conn, cursor
+from db import conn, cursor, save
 
 
 async def on_startup(dispatcher):
@@ -49,26 +49,6 @@ async def db_add():
     conn.commit()
 
 
-async def save(user_id, text):
-    postgres_insert_query = (
-        """ INSERT INTO messages (id, telegram_id, text) VALUES (DEFAULT,%s,%s)"""
-    )
-    record_to_insert = (
-        int(user_id),
-        str(text),
-    )
-    cursor.execute(postgres_insert_query, record_to_insert)
-    conn.commit()
-
-
-async def read(user_id):
-    results = await cursor.fetch_all(
-        "SELECT text FROM messages WHERE telegram_id = :telegram_id ",
-        values={"telegram_id": user_id},
-    )
-    return [next(result.values()) for result in results]
-
-
 """
 @dp.message_handler()
 async def echo(message: types.Message):
@@ -80,7 +60,7 @@ async def echo(message: types.Message):
 
 @dp.message_handler()
 async def echo(message: types.Message):
-    await save(message.from_user.id, message.text)
+    await db.save(message.from_user.id, message.text)
     # await message.answer(message.text + " Твой ИД " + str(message.from_user.id))
 
 
