@@ -1,4 +1,5 @@
 import asyncio
+import aioschedule
 import logging
 from random import randint
 
@@ -23,8 +24,11 @@ async def on_shutdown(dispatcher):
 
 async def gg():
     while True:
-        await bot.send_message(503415978, 'msg')
-        await asyncio.sleep(10)
+        await bot.send_message(503415978, "msg")
+        asyncio.sleep(20)
+
+
+# asyncio.run(gg())
 
 
 """
