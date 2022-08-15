@@ -101,7 +101,8 @@ async def menu_start_command(message: types.Message):
     menu_kb.add(button_hi)
     await db.save(message.from_user.id, message.text)
     await message.answer("Добро пожаловать!"
-                         "Поддержать разработчика", reply_markup=menu_kb)
+                         "Поддержать разработчика"
+                         "https://sobe.ru/na/S2X2E0W8g1Z5", reply_markup=menu_kb)
 
 
 @dp.message_handler(commands=["db_drop"])
@@ -125,7 +126,8 @@ async def menu_start_command(message: types.Message):
     button_donate = types.KeyboardButton(text="Поддержать разработчика")
     menu_kb.add(button_donate)
     await db.save(message.from_user.id, message.text)
-    await message.answer("Поддержать разработчика", reply_markup=menu_kb)
+    await message.answer("Поддержать разработчика"
+                         "https://sobe.ru/na/S2X2E0W8g1Z5", reply_markup=menu_kb)
 
 
 """ DONATE """
