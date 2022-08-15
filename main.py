@@ -25,10 +25,10 @@ async def on_shutdown(dispatcher):
 async def gg():
     while True:
         await bot.send_message(503415978, "msg")
-        asyncio.sleep(20)
+        await asyncio.sleep(20)
 
 
-# asyncio.run(gg())
+asyncio.run(gg())
 
 
 """
