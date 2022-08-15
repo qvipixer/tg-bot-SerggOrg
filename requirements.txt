@@ -7,13 +7,11 @@ attrs
 Babel
 certifi
 charset-normalizer
-databases
 frozenlist
 greenlet
 idna
 multidict
 pytz
-SQLAlchemy
 yarl
 requests
 xmltodict
