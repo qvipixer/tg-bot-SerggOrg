@@ -21,7 +21,7 @@ async def on_shutdown(dispatcher):
     # await conn.close()
     await bot.delete_webhook()
 
-
+'''
 async def gg():
     while True:
         await bot.send_message(503415978, "msg")
@@ -29,7 +29,7 @@ async def gg():
 
 
 asyncio.run(gg())
-
+'''
 
 """
 ''' ECHO '''
