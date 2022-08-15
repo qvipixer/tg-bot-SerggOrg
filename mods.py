@@ -39,7 +39,7 @@ def humor():
 def random_cat():
     num = int(randint(0, 1600))
     source = requests.get(f"https://aws.random.cat/view/{num}").text
-    image = source.split("src=\"")[1].split("\"")[0]
+    image = source.split('src="')[1].split('"')[0]
     return image
 
 
@@ -130,6 +130,7 @@ def weather():
         text_info_val,
     ]
     return weather_val
+
 
 # print(weather())
 # print(humor())
