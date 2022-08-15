@@ -100,7 +100,8 @@ async def menu_start_command(message: types.Message):
     button_hi = types.KeyboardButton(text="Вызвать меню")
     menu_kb.add(button_hi)
     await db.save(message.from_user.id, message.text)
-    await message.answer("Добро пожаловать!", reply_markup=menu_kb)
+    await message.answer("Добро пожаловать!"
+                         "Поддержать разработчика", reply_markup=menu_kb)
 
 
 @dp.message_handler(commands=["db_drop"])
