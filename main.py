@@ -24,10 +24,8 @@ async def on_shutdown(dispatcher):
 async def gg():
     while True:
         await bot.send_message(503415978, 'msg')
-        asyncio.sleep(10)
+        await asyncio.sleep(10)
 
-
-asyncio.run(gg())
 
 """
 ''' ECHO '''
@@ -233,6 +231,7 @@ if __name__ == "__main__":
         skip_updates=True,
         on_startup=on_startup,
         on_shutdown=on_shutdown,
+        gg=gg,
         host=WEBAPP_HOST,
         port=WEBAPP_PORT,
     )
