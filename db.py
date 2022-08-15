@@ -1,11 +1,3 @@
-"""
-from databases import Database
-
-
-
-database = Database(DB_URL)
-
-"""
 import psycopg2
 
 from config import DB_URL
@@ -63,4 +55,6 @@ async def db_add():
     )"""
     cursor.execute(sql1)
     conn.commit()
-    """DEF"""
+
+
+"""DEF"""

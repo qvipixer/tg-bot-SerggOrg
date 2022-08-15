@@ -35,6 +35,7 @@ async def echo(message: types.Message):
     # await message.answer(message.text + " Твой ИД " + str(message.from_user.id))
 """
 
+
 @dp.message_handler(regexp="(^cat[s]?$|puss)")
 async def cats(message: types.Message):
     with open("photos/cat.jpg", "rb") as photo:
@@ -70,27 +71,6 @@ async def test(message: types.Message):
 """ MENU"""
 
 
-@dp.message_handler(commands=["start"])
-async def menu_start_command(message: types.Message):
-    menu_kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button_hi = types.KeyboardButton(text="Вызвать меню")
-    menu_kb.add(button_hi)
-    await db.save(message.from_user.id, message.text)
-    await message.answer("Добро пожаловать!", reply_markup=menu_kb)
-
-
-@dp.message_handler(commands=["db_drop"])
-async def menu_start_command(message: types.Message):
-    await db.db_drop()
-    await message.reply("db_drop")
-
-
-@dp.message_handler(commands=["db_add"])
-async def menu_start_command(message: types.Message):
-    await db.db_add()
-    await message.reply("db_add")
-
-
 @dp.message_handler(lambda message: message.text == "Вызвать меню")
 async def without_puree(message: types.Message):
     menu_kb_inl = types.InlineKeyboardMarkup(resize_keyboard=True)
@@ -122,6 +102,34 @@ async def without_puree(message: types.Message):
     menu_kb_inl.add(button_inl_random_cat)
 
     await message.reply("Добро пожаловать в меню!", reply_markup=menu_kb_inl)
+
+
+""" CMD """
+
+
+@dp.message_handler(commands=["start"])
+async def menu_start_command(message: types.Message):
+    menu_kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    button_hi = types.KeyboardButton(text="Вызвать меню")
+    menu_kb.add(button_hi)
+    await db.save(message.from_user.id, message.text)
+    await message.answer("Добро пожаловать!", reply_markup=menu_kb)
+
+
+@dp.message_handler(commands=["db_drop"])
+async def menu_start_command(message: types.Message):
+    await db.db_drop()
+    await message.reply("db_drop")
+
+
+@dp.message_handler(commands=["db_add"])
+async def menu_start_command(message: types.Message):
+    await db.db_add()
+    await message.reply("db_add")
+
+
+""" CMD """
+""" TEXT """
 
 
 @dp.callback_query_handler(text="weather_value")
@@ -196,6 +204,8 @@ async def send_humor_value(call: types.CallbackQuery):
 async def send_projects_value(call: types.CallbackQuery):
     await call.message.reply("Тут скоро будут данные о проектах")
 
+
+""" TEXT """
 
 """MENU"""
 
