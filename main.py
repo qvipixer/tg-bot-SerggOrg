@@ -1,3 +1,4 @@
+import asyncio
 import logging
 from random import randint
 
@@ -19,6 +20,14 @@ async def on_shutdown(dispatcher):
     # await conn.close()
     await bot.delete_webhook()
 
+
+async def gg():
+    while True:
+        await bot.send_message(503415978, ''msg'')
+        asyncio.sleep(10)
+
+
+asyncio.run(gg())
 
 """
 ''' ECHO '''
