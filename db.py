@@ -13,6 +13,7 @@ from config import DB_URL
 conn = psycopg2.connect(DB_URL, sslmode='require')
 cursor = conn.cursor()
 
+"""DEF"""
 
 async def save(user_id, text):
     postgres_insert_query = (
@@ -32,3 +33,32 @@ async def read(user_id):
         values={"telegram_id": user_id},
     )
     return [next(result.values()) for result in results]
+
+async def db_drop():
+    sql = """
+    DROP TABLE EMPLOYEE
+    """
+    cursor.execute(sql)
+    conn.commit()
+
+
+async def db_add():
+    sql1 = """
+    CREATE TABLE messages (
+        id SERIAL PRIMARY KEY,
+        telegram_id INTEGER NOT NULL,
+        text text NOT NULL
+    )
+    """
+
+    sql = """
+    CREATE TABLE EMPLOYEE(
+        FIRST_NAME CHAR(20) NOT NULL,
+        LAST_NAME CHAR(20),
+        AGE INT,
+        SEX CHAR(1),
+        INCOME FLOAT
+    )"""
+    cursor.execute(sql1)
+    conn.commit()
+    """DEF"""

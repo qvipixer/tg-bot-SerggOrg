@@ -5,6 +5,7 @@ import aiogram.utils.markdown as fmt
 from aiogram import types
 from aiogram.utils.executor import start_webhook
 
+import db
 import mods
 from config import bot, dp, WEBHOOK_URL, WEBHOOK_PATH, WEBAPP_HOST, WEBAPP_PORT
 from db import conn, cursor, save
@@ -19,34 +20,6 @@ async def on_shutdown(dispatcher):
     # await conn.close()
     await bot.delete_webhook()
 
-
-async def db_drop():
-    sql = """
-    DROP TABLE EMPLOYEE
-    """
-    cursor.execute(sql)
-    conn.commit()
-
-
-async def db_add():
-    sql1 = """
-    CREATE TABLE messages (
-        id SERIAL PRIMARY KEY,
-        telegram_id INTEGER NOT NULL,
-        text text NOT NULL
-    )
-    """
-
-    sql = """
-    CREATE TABLE EMPLOYEE(
-        FIRST_NAME CHAR(20) NOT NULL,
-        LAST_NAME CHAR(20),
-        AGE INT,
-        SEX CHAR(1),
-        INCOME FLOAT
-    )"""
-    cursor.execute(sql1)
-    conn.commit()
 
 
 """
@@ -108,13 +81,13 @@ async def menu_start_command(message: types.Message):
 
 @dp.message_handler(commands=["db_drop"])
 async def menu_start_command(message: types.Message):
-    await db_drop()
+    await db.db_drop()
     await message.reply("db_drop")
 
 
 @dp.message_handler(commands=["db_add"])
 async def menu_start_command(message: types.Message):
-    await db_add()
+    await db.db_add()
     await message.reply("db_add")
 
 
