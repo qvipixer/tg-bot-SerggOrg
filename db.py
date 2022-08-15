@@ -6,14 +6,15 @@ from databases import Database
 database = Database(DB_URL)
 
 """
-import os
 import psycopg2
+
 from config import DB_URL
 
 conn = psycopg2.connect(DB_URL, sslmode='require')
 cursor = conn.cursor()
 
 """DEF"""
+
 
 async def save(user_id, text):
     postgres_insert_query = (
@@ -33,6 +34,7 @@ async def read(user_id):
         values={"telegram_id": user_id},
     )
     return [next(result.values()) for result in results]
+
 
 async def db_drop():
     sql = """

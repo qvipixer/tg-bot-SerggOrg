@@ -8,7 +8,6 @@ from aiogram.utils.executor import start_webhook
 import db
 import mods
 from config import bot, dp, WEBHOOK_URL, WEBHOOK_PATH, WEBAPP_HOST, WEBAPP_PORT
-from db import conn, cursor, save
 
 
 async def on_startup(dispatcher):
@@ -21,21 +20,20 @@ async def on_shutdown(dispatcher):
     await bot.delete_webhook()
 
 
-
 """
 @dp.message_handler()
 async def echo(message: types.Message):
     await save(message.from_user.id, message.text)
     messages = await read(message.from_user.id)
     await message.answer(messages)
-"""
+
 
 
 @dp.message_handler()
 async def echo(message: types.Message):
     await db.save(message.from_user.id, message.text)
     # await message.answer(message.text + " Твой ИД " + str(message.from_user.id))
-
+"""
 
 @dp.message_handler(regexp="(^cat[s]?$|puss)")
 async def cats(message: types.Message):
@@ -50,6 +48,7 @@ async def cats(message: types.Message):
 async def cats(message: types.Message):
     with open("photos/cat.jpg", "rb") as photo:
         await message.reply_photo(photo, caption="Коцык тута")
+        await db.save(message.from_user.id, message.text)
 
 
 @dp.message_handler(regexp="test")
@@ -61,6 +60,7 @@ async def test(message: types.Message):
         )
         markup.add(switch_button)
 
+        await db.save(message.from_user.id, message.text)
         await message.answer_photo(photo, caption="Коцык тута")
         await message.answer("Выбрать чат", reply_markup=markup)
 
@@ -75,7 +75,7 @@ async def menu_start_command(message: types.Message):
     menu_kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
     button_hi = types.KeyboardButton(text="Вызвать меню")
     menu_kb.add(button_hi)
-
+    await db.save(message.from_user.id, message.text)
     await message.answer("Добро пожаловать!", reply_markup=menu_kb)
 
 
