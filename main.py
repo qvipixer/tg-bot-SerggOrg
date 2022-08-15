@@ -12,7 +12,19 @@ import mods
 from config import bot, dp, WEBHOOK_URL, WEBHOOK_PATH, WEBAPP_HOST, WEBAPP_PORT
 
 
+async def noon_print():
+    bot.send_message(503415978, "msg")
+
+
+async def scheduler():
+    aioschedule.every().seconds('20').do(noon_print)
+    while True:
+        await aioschedule.run_pending()
+        await asyncio.sleep(1)
+
+
 async def on_startup(dispatcher):
+    asyncio.create_task(scheduler())
     # await database.connect()
     await bot.set_webhook(WEBHOOK_URL, drop_pending_updates=True)
 
