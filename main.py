@@ -127,7 +127,7 @@ async def menu_start_command(message: types.Message):
     # menu_kb.add(button_donate)
     await db.save(message.from_user.id, message.text)
     await message.answer("Поддержать разработчика"
-                         "https://sobe.ru/na/S2X2E0W8g1Z5")
+                         "https://sobe.ru/na/S2X2E0W8g1Z5")# , reply_markup=menu_kb)
 
 
 """ DONATE """
