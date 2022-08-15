@@ -21,26 +21,13 @@ async def on_shutdown(dispatcher):
 
 
 """
-@dp.message_handler()
-async def echo(message: types.Message):
-    await save(message.from_user.id, message.text)
-    messages = await read(message.from_user.id)
-    await message.answer(messages)
-
-
-
+''' ECHO '''
 @dp.message_handler()
 async def echo(message: types.Message):
     await db.save(message.from_user.id, message.text)
     # await message.answer(message.text + " Твой ИД " + str(message.from_user.id))
+''' ECHO '''
 """
-
-
-@dp.message_handler(regexp="(^cat[s]?$|puss)")
-async def cats(message: types.Message):
-    with open("photos/cat.jpg", "rb") as photo:
-        await message.reply_photo(photo, caption="Коцык тута")
-
 
 """ CAT """
 
@@ -128,7 +115,22 @@ async def menu_start_command(message: types.Message):
     await message.reply("db_add")
 
 
+""" DONATE """
+
+
+@dp.message_handler(commands=["donate"])
+async def menu_start_command(message: types.Message):
+    menu_kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    button_donate = types.KeyboardButton(text="Поддержать разработчика")
+    menu_kb.add(button_donate)
+    await db.save(message.from_user.id, message.text)
+    await message.answer("Поддержать разработчика", reply_markup=menu_kb)
+
+
+""" DONATE """
+
 """ CMD """
+
 """ TEXT """
 
 
