@@ -36,7 +36,7 @@ async def echo(message: types.Message):
 async def cats(message: types.Message):
     with open("photos/cat.jpg", "rb") as photo:
         await message.reply_photo(photo, caption="Коцык тута")
-        await db.save(message.from_user.id, message.text)
+        await db.save_db(message.from_user.id, message.text)
 
 
 @dp.message_handler(regexp="test")
@@ -48,7 +48,7 @@ async def test(message: types.Message):
         )
         markup.add(switch_button)
 
-        await db.save(message.from_user.id, message.text)
+        await db.save_db(message.from_user.id, message.text)
         await message.answer_photo(photo, caption="Коцык тута")
         await message.answer("Выбрать чат", reply_markup=markup)
 
@@ -99,7 +99,7 @@ async def menu_start_command(message: types.Message):
     menu_kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
     button_hi = types.KeyboardButton(text="Вызвать меню")
     menu_kb.add(button_hi)
-    await db.save(message.from_user.id, message.text)
+    await db.save_db(message.from_user.id, message.text)
     await message.answer(
         "Добро пожаловать!" "Поддержать разработчика" "https://sobe.ru/na/S2X2E0W8g1Z5",
         reply_markup=menu_kb,
@@ -107,14 +107,14 @@ async def menu_start_command(message: types.Message):
 
 
 @dp.message_handler(commands=["db_drop"])
-async def menu_start_command(message: types.Message):
-    await db.db_drop()
+async def command_db_drop(message: types.Message):
+    await db.drop_db()
     await message.reply("db_drop")
 
 
 @dp.message_handler(commands=["db_add"])
-async def menu_start_command(message: types.Message):
-    await db.db_add()
+async def command_db_add(message: types.Message):
+    await db.add_db()
     await message.reply("db_add")
 
 
@@ -122,11 +122,11 @@ async def menu_start_command(message: types.Message):
 
 
 @dp.message_handler(commands=["donate"])
-async def menu_start_command(message: types.Message):
+async def command_donate(message: types.Message):
     # menu_kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
     # button_donate = types.KeyboardButton(text="Поддержать разработчика")
     # menu_kb.add(button_donate)
-    await db.save(message.from_user.id, message.text)
+    await db.save_db(message.from_user.id, message.text)
     await message.answer(
         "Поддержать разработчика" "https://sobe.ru/na/S2X2E0W8g1Z5"
     )  # , reply_markup=menu_kb)

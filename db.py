@@ -1,5 +1,4 @@
 import psycopg2
-
 from config import DB_URL
 
 conn = psycopg2.connect(DB_URL, sslmode="require")
@@ -8,7 +7,7 @@ cursor = conn.cursor()
 """DEF"""
 
 
-async def save(user_id, text):
+async def save_db(user_id, text):
     postgres_insert_query = (
         """ INSERT INTO messages (id, telegram_id, text) VALUES (DEFAULT,%s,%s)"""
     )
@@ -20,7 +19,7 @@ async def save(user_id, text):
     conn.commit()
 
 
-async def read(user_id):
+async def read_db(user_id):
     results = await cursor.fetch_all(
         "SELECT text FROM messages WHERE telegram_id = :telegram_id ",
         values={"telegram_id": user_id},
@@ -28,7 +27,7 @@ async def read(user_id):
     return [next(result.values()) for result in results]
 
 
-async def db_drop():
+async def drop_db():
     sql = """
     DROP TABLE EMPLOYEE
     """
@@ -36,7 +35,7 @@ async def db_drop():
     conn.commit()
 
 
-async def db_add():
+async def add_db():
     sql1 = """
     CREATE TABLE messages (
         id SERIAL PRIMARY KEY,
