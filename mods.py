@@ -131,7 +131,6 @@ def weather():
     ]
     return weather_val
 
-
 # print(weather())
 # print(humor())
 # print(nasa_apod())

@@ -1,5 +1,3 @@
-import asyncio
-import aioschedule
 import logging
 from random import randint
 
@@ -12,19 +10,7 @@ import mods
 from config import bot, dp, WEBHOOK_URL, WEBHOOK_PATH, WEBAPP_HOST, WEBAPP_PORT
 
 
-async def noon_print():
-    bot.send_message(503415978, "msg")
-
-
-async def scheduler():
-    aioschedule.every().second(10).do(noon_print)
-    while True:
-        await aioschedule.run_pending()
-        await asyncio.sleep(1)
-
-
 async def on_startup(dispatcher):
-    asyncio.create_task(scheduler())
     # await database.connect()
     await bot.set_webhook(WEBHOOK_URL, drop_pending_updates=True)
 
@@ -33,16 +19,6 @@ async def on_shutdown(dispatcher):
     # await conn.close()
     await bot.delete_webhook()
 
-
-"""
-async def gg():
-    while True:
-        await bot.send_message(503415978, "msg")
-        await asyncio.sleep(20)
-
-
-asyncio.run(gg())
-"""
 
 """
 ''' ECHO '''
