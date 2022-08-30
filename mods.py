@@ -39,7 +39,6 @@ def humor():
 
 
 def random_penguins():
-
     list_id = []
     list_url = []
     i = 1
@@ -65,7 +64,6 @@ def random_penguins():
         # print(listID[-1])
 
     return list_url[random.randint(list_id[0], list_id[-1])]
-
 
 
 def random_cat():
