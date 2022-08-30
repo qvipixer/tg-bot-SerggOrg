@@ -5,6 +5,8 @@ from random import randint
 import requests
 import xmltodict
 from bs4 import BeautifulSoup
+import random
+from pexels_api import API
 
 
 def humor():
@@ -34,6 +36,34 @@ def humor():
 """""" """""" """""" """""" """""" """""" """''
 
 """ """""" """""" """""" """""" """""" """""" ""
+
+
+def random_penguins():
+    list_id = []
+    list_url = []
+    i = 1
+
+    # Type your Pexels API
+    PEXELS_API_KEY = '563492ad6f91700001000001e066f5456f1d4d309886ecd05343501e'
+    # Create API object
+    api = API(PEXELS_API_KEY)
+    # Search five 'kitten' photos
+    api.search('penguins', page=1, results_per_page=100)
+    # Get photo entries
+    photos = api.get_entries()
+    # Loop the five photos2
+    for photo in photos:
+        # Print photographer
+        # print('Photographer: ', photo.photographer)
+        # Print url
+        # print('Photo url: ', photo.url)
+        # Print original size url
+        i += 1
+        list_id.append(i)
+        list_url.append(photo.original)
+        # print('Photo original size: ', photo.original)
+        # print(listID[-1])
+    return list_url[random.randint(list_id[0], list_id[-1])]
 
 
 def random_cat():

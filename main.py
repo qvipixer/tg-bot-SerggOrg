@@ -79,6 +79,9 @@ async def without_puree(message: types.Message):
         text="NASA EPIC", callback_data="nasa_epic_photo"
     )
 
+    button_inl_random_penguins = types.KeyboardButton(
+        text="Пингины", callback_data="random_penguins"
+    )
     button_inl_random_cat = types.KeyboardButton(
         text="Коцыки", callback_data="random_cat"
     )
@@ -87,6 +90,7 @@ async def without_puree(message: types.Message):
     menu_kb_inl.add(button_inl_humor, button_inl_random)
     menu_kb_inl.add(button_inl_nasa_apod_photo, button_inl_nasa_epic_photo)
     menu_kb_inl.add(button_inl_random_cat)
+    menu_kb_inl.add(button_inl_random_penguins)
 
     await message.reply("Добро пожаловать в меню!", reply_markup=menu_kb_inl)
 
@@ -161,6 +165,16 @@ async def send_weather_value(call: types.CallbackQuery):
         parse_mode="HTML",
     )
     # await call.message.reply('Тут скоро будут погодные данные')
+
+
+@dp.callback_query_handler(text="random_penguins")
+async def send_random_cat(call: types.CallbackQuery):
+    menu_kb_inl = types.InlineKeyboardMarkup(resize_keyboard=True)
+    button_inl_random_penguins = types.KeyboardButton(
+        text="Ещё пингвин?", callback_data="random_penguins"
+    )
+    menu_kb_inl.add(button_inl_random_penguins)
+    await call.message.answer_photo(mods.random_penguins(), reply_markup=menu_kb_inl)
 
 
 @dp.callback_query_handler(text="random_cat")
