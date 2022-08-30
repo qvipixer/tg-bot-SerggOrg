@@ -63,7 +63,8 @@ def random_penguins():
         list_url.append(photo.original)
         # print('Photo original size: ', photo.original)
         # print(listID[-1])
-    return list_url[random.randint(list_id[0], list_id[-1])]
+        image = list_url[random.randint(list_id[0], list_id[-1])]
+    return image
 
 
 def random_cat():
