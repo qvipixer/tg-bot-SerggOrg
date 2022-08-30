@@ -39,10 +39,10 @@ def humor():
 
 
 def random_penguins():
+
     list_id = []
     list_url = []
     i = 1
-
     # Type your Pexels API
     PEXELS_API_KEY = '563492ad6f91700001000001e066f5456f1d4d309886ecd05343501e'
     # Create API object
@@ -63,8 +63,9 @@ def random_penguins():
         list_url.append(photo.original)
         # print('Photo original size: ', photo.original)
         # print(listID[-1])
-        image = list_url[random.randint(list_id[0], list_id[-1])]
-    return image
+
+    return list_url[random.randint(list_id[0], list_id[-1])]
+
 
 
 def random_cat():
