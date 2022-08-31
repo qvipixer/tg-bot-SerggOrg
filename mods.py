@@ -1,11 +1,11 @@
 import json
+import random
 import urllib.request
 from random import randint
 
 import requests
 import xmltodict
 from bs4 import BeautifulSoup
-import random
 from pexels_api import API
 
 

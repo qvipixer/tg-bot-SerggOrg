@@ -1,5 +1,6 @@
-from requests import get
 import random
+
+from requests import get
 
 num = int(input())
 source = get(f"https://aws.random.cat/view/{num}").text
@@ -37,8 +38,3 @@ for photo in photos:
     # print('Photo original size: ', photo.original)
     # print(listID[-1])
 print(listURL[random.randint(listID[0], listID[-1])])
-
-
-
-
-
