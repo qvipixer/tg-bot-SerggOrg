@@ -43,11 +43,11 @@ def random_penguins():
     list_url = []
     i = 1
     # Type your Pexels API
-    PEXELS_API_KEY = '563492ad6f91700001000001e066f5456f1d4d309886ecd05343501e'
+    PEXELS_API_KEY = "563492ad6f91700001000001e066f5456f1d4d309886ecd05343501e"
     # Create API object
     api = API(PEXELS_API_KEY)
     # Search five 'kitten' photos
-    api.search('penguins', page=1, results_per_page=100)
+    api.search("penguins", page=1, results_per_page=100)
     # Get photo entries
     photos = api.get_entries()
     # Loop the five photos2
@@ -160,6 +160,7 @@ def weather():
         text_info_val,
     ]
     return weather_val
+
 
 # print(weather())
 # print(humor())
