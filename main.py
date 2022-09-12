@@ -86,12 +86,16 @@ async def without_puree(message: types.Message):
         text="Коцыки", callback_data="random_cat"
     )
 
-    menu_kb_inl.add(button_inl_weather, button_inl_projects)
-    menu_kb_inl.add(button_inl_humor, button_inl_random)
-    menu_kb_inl.add(button_inl_nasa_apod_photo, button_inl_nasa_epic_photo)
-    menu_kb_inl.add(button_inl_random_cat)
-    menu_kb_inl.add(button_inl_random_penguins)
-
+    menu_kb_inl.add(
+        button_inl_weather,
+        button_inl_projects,
+        button_inl_humor,
+        button_inl_random,
+        button_inl_nasa_apod_photo,
+        button_inl_nasa_epic_photo,
+        button_inl_random_cat,
+        button_inl_random_penguins,
+    )
     await message.reply("Добро пожаловать в меню!", reply_markup=menu_kb_inl)
 
 
