@@ -60,7 +60,7 @@ async def test(message: types.Message):
 
 @dp.message_handler(lambda message: message.text == "Вызвать меню")
 async def without_puree(message: types.Message):
-    menu_kb_inl = types.InlineKeyboardMarkup(resize_keyboard=True, row_width=8)
+    menu_kb_inl = types.InlineKeyboardMarkup(resize_keyboard=True, row_width=4)
 
     button_inl_weather = types.KeyboardButton(
         text="Погода", callback_data="weather_value"
