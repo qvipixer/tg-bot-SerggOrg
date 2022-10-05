@@ -159,6 +159,8 @@ async def send_weather_value(call: types.CallbackQuery):
         ),
         parse_mode="HTML",
     )
+    # Не забываем отчитаться о получении колбэка
+    await call.answer()  # Удаляет часики на кнопках
     # await call.message.reply('Тут скоро будут погодные данные')
 
 
@@ -170,6 +172,8 @@ async def send_random_penguins(call: types.CallbackQuery):
     )
     menu_kb_inl.add(button_inl_random_penguins)
     await call.message.answer_photo(mods.random_penguins(), reply_markup=menu_kb_inl)
+    # Не забываем отчитаться о получении колбэка
+    await call.answer()  # Удаляет часики на кнопках
 
 
 @dp.callback_query_handler(text="random_cat")
@@ -180,18 +184,24 @@ async def send_random_cat(call: types.CallbackQuery):
     )
     menu_kb_inl.add(button_inl_random_cat)
     await call.message.answer_photo(mods.random_cat(), reply_markup=menu_kb_inl)
+    # Не забываем отчитаться о получении колбэка
+    await call.answer()  # Удаляет часики на кнопках
 
 
 @dp.callback_query_handler(text="nasa_apod_photo")
 async def send_nasa_apod_photo(call: types.CallbackQuery):
     nasa_list = mods.nasa_apod()
     await call.message.answer_photo(nasa_list[0], caption=nasa_list[1])
+    # Не забываем отчитаться о получении колбэка
+    await call.answer()  # Удаляет часики на кнопках
 
 
 @dp.callback_query_handler(text="nasa_epic_photo")
 async def send_nasa_epic_photo(call: types.CallbackQuery):
     nasa_list = mods.nasa_epic()
     await call.message.answer_photo(nasa_list[0], caption=nasa_list[1])
+    # Не забываем отчитаться о получении колбэка
+    await call.answer()  # Удаляет часики на кнопках
 
 
 @dp.callback_query_handler(text="random_value")
@@ -205,6 +215,8 @@ async def send_random_value(call: types.CallbackQuery):
     await call.message.answer(
         ("Число от 0 до 10 было :  " + str(randint(0, 10))), reply_markup=menu_kb_inl
     )
+    # Не забываем отчитаться о получении колбэка
+    await call.answer()  # Удаляет часики на кнопках
 
 
 @dp.callback_query_handler(text="humor_value")
@@ -214,11 +226,15 @@ async def send_humor_value(call: types.CallbackQuery):
     menu_kb_inl.add(button_inl_humor)
 
     await call.message.answer(mods.humor(), reply_markup=menu_kb_inl)
+    # Не забываем отчитаться о получении колбэка
+    await call.answer()  # Удаляет часики на кнопках
 
 
 @dp.callback_query_handler(text="projects_value")
 async def send_projects_value(call: types.CallbackQuery):
     await call.message.reply("Тут скоро будут данные о проектах")
+    # Не забываем отчитаться о получении колбэка
+    await call.answer()  # Удаляет часики на кнопках
 
 
 """ TEXT """
